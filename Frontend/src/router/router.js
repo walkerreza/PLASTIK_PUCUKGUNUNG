@@ -10,7 +10,8 @@ const Produk = () => import('../pages/customer/Produk.vue')
 // Owner
 const HomeOwner = () => import('../pages/owner/HomeOwner.vue')
 const OwnerReport = () => import('../pages/owner/OwnerReport.vue')
-
+const LoginPage = () => import('../pages/Login/LoginPage.vue')
+const RegisterPage = () => import('../pages/Login/RegisterPage.vue')
 const routes = [
   { path: '/', name: 'home', component: Home, meta: { roles: ['customer', 'owner'] } },
   { path: '/about', name: 'about', component: About, meta: { roles: ['customer', 'owner'] } },
@@ -20,6 +21,10 @@ const routes = [
   // Owner
   { path: '/homeowner', name: 'homeowner', component: HomeOwner, meta: { requiresAuth: true, roles: ['owner'] } },
   { path: '/ownerreport', name: 'ownerreport', component: OwnerReport, meta: { requiresAuth: true, roles: ['owner'] } },
+
+  {path: '/LoginPage', name: 'LoginPage', component:LoginPage
+  },
+  {path: '/registerPage',name: 'registerPage', component:RegisterPage}
 ]
 
 const router = createRouter({

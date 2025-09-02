@@ -1,5 +1,15 @@
 <script setup>
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+
+const isLoggedIn = ref(false) // Nanti akan diganti dengan state management
+
+const links = [
+  { name: 'Home', path: '/' },
+  { name: 'Produk', path: '/produk' },
+  { name: 'Kontak', path: '/contact' },
+  { name: 'Tentang', path: '/about' },
+]
 </script>
 
 <template>
@@ -14,10 +24,7 @@ import { RouterLink } from 'vue-router'
             <span class="text-2xl font-bold text-gray-800">Plastik Pucukgunung</span>
           </RouterLink>
           <div class="hidden md:flex items-center space-x-8 pl-8 pt-1">
-            <RouterLink to="/" class="text-base text-gray-700 hover:text-blue-700 font-medium">Home</RouterLink>
-            <RouterLink to="/produk" class="text-base text-gray-700 hover:text-blue-700 font-medium">Produk</RouterLink>
-            <RouterLink to="/contact" class="text-base text-gray-700 hover:text-blue-700 font-medium">Kontak</RouterLink>
-            <RouterLink to="/about" class="text-base text-gray-700 hover:text-blue-700 font-medium">Tentang</RouterLink>
+            <RouterLink v-for="link in links" :key="link.name" :to="link.path" class="text-base text-gray-700 hover:text-blue-700 font-medium">{{ link.name }}</RouterLink>
           </div>
         </div>
 
@@ -37,17 +44,24 @@ import { RouterLink } from 'vue-router'
 
         <!-- Icons -->
         <div class="w-auto flex items-center justify-end space-x-6">
-          <RouterLink to="/wishlist" class="text-gray-600 hover:text-blue-500 relative">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-            <span class="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
-          </RouterLink>
-          <RouterLink to="/keranjang" class="text-gray-600 hover:text-blue-500 relative">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-            <span class="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">5</span>
-          </RouterLink>
-          <RouterLink to="/akun" class="text-gray-600 hover:text-blue-500">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-          </RouterLink>
+          <template v-if="isLoggedIn">
+            <RouterLink to="/wishlist" class="text-gray-600 hover:text-blue-500 relative">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+              <span class="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+            </RouterLink>
+            <RouterLink to="/keranjang" class="text-gray-600 hover:text-blue-500 relative">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+              <span class="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">5</span>
+            </RouterLink>
+            <RouterLink to="/akun" class="text-gray-600 hover:text-blue-500">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            </RouterLink>
+          </template>
+          <template v-else>
+            <RouterLink to="/LoginPage" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              Login
+            </RouterLink>
+          </template>
         </div>
       </div>
     </div>
