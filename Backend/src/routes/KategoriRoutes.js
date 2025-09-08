@@ -6,7 +6,7 @@ const {
     getKategoriById,
     updateKategori,
     deleteKategori
-} = require('../controller/KategoriiController');
+} = require('../controller/KategoriController');
 
 router.route('/').
     post(createKategori).

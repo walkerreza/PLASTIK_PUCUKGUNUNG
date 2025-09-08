@@ -11,6 +11,9 @@ const Barang = require('./models/Barang');
 const Pesanan = require('./models/Pesanan');
 const Detailpesanan = require('./models/Detailpesanan');
 
+// Impor Rute
+const kategoriRoutes = require('./routes/KategoriRoutes');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -38,6 +41,9 @@ app.get('/', (req, res) => {
 app.get('/api/health', (req, res) => {
     res.status(200).json({ message: 'Backend is healthy and running.' });
 });
+
+// Gunakan Rute
+app.use('/api/kategori', kategoriRoutes);
 
 // 4. Sinkronkan DB dan jalankan server
 const startServer = async () => {

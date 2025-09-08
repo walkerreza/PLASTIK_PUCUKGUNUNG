@@ -2,7 +2,7 @@ const Baranng = require('../models/Barang')
 
 const createBarang = async(req,res)=>{
     try {
-        const {nama, kategori_id, harga, stok} = req.body;
+        const {nama, kategori_id, harga, stok, gambar,deskripsi,kondisiBarang} = req.body;
         if (!nama) {
             return res.status(400).json({msg: 'Nama barang tidak boleh kosong'})
         }
@@ -35,7 +35,7 @@ const getBarangById = async(req,res)=>{
 }
 const updateBarang = async (req,res) => {
     try {
-        const {nama, kategori_id, harga, stok} = req.body;
+        const {nama, kategori_id, harga, stok,gambar,deskripsi,kondisiBarang} = req.body;
         const barang = await Baranng.findByPk(req.params.id);
         if (!barang) {
             return res.status(404).json({msg: 'Barang tidak ditemukan'})
@@ -44,6 +44,9 @@ const updateBarang = async (req,res) => {
         barang.kategori_id = kategori_id;
         barang.harga = harga;
         barang.stok = stok;
+        barang.gambar = gambar;
+        barang.deskripsi = deskripsi;
+        barang.kondisiBarang = kondisiBarang;
         await barang.save();
         res.status(200).json(barang);
     } catch (error) {

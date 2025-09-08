@@ -26,7 +26,20 @@ const Barang = db.define('barang', {
     stok: {
         type: DataTypes.INTEGER,
         allowNull: false
-    }
+    },
+    gambar :{
+        type: DataTypes.BLOB('medium'),
+        allowNull: true
+    },
+    deskripsi :{
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
+    kondisiBarang :{
+        type: DataTypes.ENUM('Baru', 'Retur'),
+        allowNull: false
+    },
+    
 });
 
 Barang.associate = (models) => {

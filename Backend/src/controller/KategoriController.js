@@ -3,11 +3,11 @@ const Kategori = require ('../models/Kategori');
 
 const createKategori = async (req, res) => {
     try {
-        const {nama} = req.body;
-        if (!nama) {
+        const {namaKategori} = req.body;
+        if (!namaKategori) {
             return res.status(400).json({msg: 'Nama kategori tidak boleh kosong'})
         }
-        const kategori = await Kategori.create({nama});
+        const kategori = await Kategori.create({namaKategori});
         res.status(201).json(kategori);
     } catch (error) {
         res.status(500).json({msg: 'Server Error', error: error.message})
@@ -37,12 +37,12 @@ const getKategoriById = async (req, res) => {
 
 const updateKategori = async (req, res) => {
     try {
-        const {nama} = req.body;
+        const {namaKategori} = req.body;
         const kategori = await Kategori.findByPk(req.params.id);
         if (!kategori) {
             return res.status(404).json({msg: 'Kategori tidak ditemukan'})
         }
-        kategori.nama = nama;
+        kategori.namaKategori = namaKategori;
         await kategori.save();
         res.status(200).json(kategori);
     } catch (error) {
@@ -63,7 +63,7 @@ const deleteKategori = async (req, res) => {
     }
 }
 
-module.export = {
+module.exports = {
     createKategori,
     getAllKategori,
     getKategoriById,

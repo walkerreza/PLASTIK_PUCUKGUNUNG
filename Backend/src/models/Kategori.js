@@ -7,7 +7,7 @@ const Kategori = db.define('kategori', {
         primaryKey: true,
         autoIncrement: true
     },
-    nama: {
+    namaKategori: {
         type: DataTypes.STRING,
         allowNull: false
     }
