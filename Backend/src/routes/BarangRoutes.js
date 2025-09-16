@@ -11,7 +11,7 @@ const {
 router.route('/').
     post(createBarang).
     get(getAllBarang);
-router.route('/:id').
+router.route('/:id').   
     get(getBarangById).
     put(updateBarang).
     delete(deleteBarang);

@@ -22,9 +22,8 @@ const routes = [
   { path: '/homeowner', name: 'homeowner', component: HomeOwner, meta: { requiresAuth: true, roles: ['owner'] } },
   { path: '/ownerreport', name: 'ownerreport', component: OwnerReport, meta: { requiresAuth: true, roles: ['owner'] } },
 
-  {path: '/LoginPage', name: 'LoginPage', component:LoginPage
-  },
-  {path: '/registerPage',name: 'registerPage', component:RegisterPage}
+  {path: '/LoginPage', name: 'LoginPage', component:LoginPage, meta: { layout: 'AuthLayout' } },
+  {path: '/registerPage',name: 'registerPage', component:RegisterPage, meta: { layout: 'AuthLayout' }}
 ]
 
 const router = createRouter({

@@ -29,7 +29,7 @@ const links = [
         </div>
 
         <!-- Search Bar -->
-        <div class="w-1/3 hidden md:block">
+        <!-- <div class="w-1/3 hidden md:block">
           <div class="relative">
             <input 
               type="text" 
@@ -40,7 +40,7 @@ const links = [
               <svg class="w-5 h-5 text-gray-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </button>
           </div>
-        </div>
+        </div> -->
 
         <!-- Icons -->
         <div class="w-auto flex items-center justify-end space-x-6">
